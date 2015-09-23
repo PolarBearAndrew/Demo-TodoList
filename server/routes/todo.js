@@ -17,8 +17,8 @@ router.post('/', (req, res, next) => {
 
         return Todo.create({
           job: req.body.job,
-          status: 0,
-          del: 0
+          status: false,
+          del: false
         });
       })
       .then( result => {
@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
   Todo.findAll({ where: {
-          del: 0
+          del: false
         }
       })
       .then( result => {
@@ -65,7 +65,7 @@ router.get('/:status', (req, res, next) => {
   else status = true;
 
   Todo.findAll({ where: {
-          del: 0,
+          del: false,
           status: true
         }
       })
@@ -86,7 +86,22 @@ router.get('/:status', (req, res, next) => {
  */
 router.put('/', (req, res, next) => {
 
-  res.end();
+  Todo.update({ where: {
+          id: req.body.id
+        }
+      },{
+        job: req.body.job
+      })
+      .then( result => {
+
+        debug('[PUT] 修改一筆todo資料 todo, success', result );
+        res.json( { data: result } );
+      })
+      .catch( err => {
+
+        debug('[PUT] 修改一筆todo資料 todo, fail', err );
+        next(err);
+      });
 });
 
 /* [DELETE] 刪除(註銷)一筆todo

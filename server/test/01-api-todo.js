@@ -33,6 +33,8 @@ describe('[ (01) API unit test - users ]', () => {
                 data.should.have.property('job', initData.job);
                 data.should.have.property('status', false);
 
+                initData.id = data.id;
+
                 return done();
             });
         });
@@ -115,18 +117,35 @@ describe('[ (01) API unit test - users ]', () => {
             });
         });
 
-        // it('[PUT] 修改 todo ', done => {
+        it('[PUT] 修改 todo ', done => {
 
-        //     request({
-        //         url: 'http://localhost:8080/api/todo/',
-        //         method: 'PUT',
-        //         json: true,
-        //         // form: expectData
-        //     }, (err, res, data) => {
+            let newJob = { id: initData.id, job: '測試工作(修改)' };
 
-        //         return done();
-        //     });
-        // });
+            request({
+                url: 'http://localhost:8080/api/todo/',
+                method: 'PUT',
+                json: true,
+                form: newJob
+            }, (err, res, result) => {
+
+                console.log('data', data)
+
+                let data = result.data;
+
+                should.exist(data);
+                should.not.exist(err);
+                res.statusCode.should.equal(200);
+
+                data.forEach( val => {
+                    val.should.have.property('id', newJob.id);
+                    val.should.have.property('job', newJob.job);
+                    val.should.have.property('status');
+                    val.should.have.property('del', false);
+                });
+
+                return done();
+            });
+        });
 
         // it('[DELETE] 刪除 todo ', done => {
 
