@@ -1,65 +1,51 @@
-var Sequelize = require('sequelize');
-var express   = require('express');
-var router    = express.Router();
 
-// var sequelize = new Sequelize('todoList', 'root', 'root');
+import express from 'express'
+import Todo    from '../model/todo.js'
 
-var sequelize = new Sequelize('todoList', 'root', 'root', {
-  host: 'localhost',
-  port: '8889',
-  dialect: 'mysql',
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-
-  // SQLite only
-  // storage: 'path/to/database.sqlite'
-});
-
-var Todo = sequelize.define('todo', {
-  job: {
-    type: Sequelize.STRING
-  },
-  status: {
-    type: Sequelize.STRING
-  }
-}, {
-  freezeTableName: true
-});
-
+let router  = express.Router();
+let debug   = require('debug')('API:todo');
 
 /* [POST] 新增一筆todo
- *
+ * input  : job
+ * output : id, job, status
  */
-router.post('/', function(req, res, next) {
+router.post('/', (req, res, next) => {
 
-  res.end();
+  // create
+  Todo.sync( { force: false } )
+      .then( () => {
+
+        return Todo.create({
+          job: req.body.job,
+          status: 0
+        });
+      })
+      .then( result => {
+
+        debug('[PUT] 新增一筆todo, success', result.dataValues );
+        res.json( { data: result.dataValues } );
+      })
+      .catch( err => {
+
+        debug('[PUT] 新增一筆todo, fail', err.dataValues );
+        next(err);
+      });
 });
 
 /* [GET] 取得所以有todo
  *
  */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
 
-  Todo.sync({force: false})
-      .then( () => {
 
-        return Todo.create({
-          job: 'myJOB2',
-          status: '0'
-        });
-      });
+  res.end();
 
-  res.send( { api: '[get] todo '} );
 });
 
 /* [GET] 取得完成/未完成的todo
  *
  */
-router.get('/:status', function(req, res, next) {
+router.get('/:status', (req, res, next) => {
 
   res.end();
 });
@@ -67,7 +53,7 @@ router.get('/:status', function(req, res, next) {
 /* [PUT] 新增一筆todo
  * input: todoId + info
  */
-router.put('/', function(req, res, next) {
+router.put('/', (req, res, next) => {
 
   res.end();
 });
@@ -75,7 +61,7 @@ router.put('/', function(req, res, next) {
 /* [DELETE] 刪除一筆todo
  * input: todoId
  */
-router.put('/', function(req, res, next) {
+router.put('/', (req, res, next) => {
 
   res.end();
 });
