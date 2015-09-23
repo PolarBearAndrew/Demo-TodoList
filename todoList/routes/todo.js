@@ -17,7 +17,8 @@ router.post('/', (req, res, next) => {
 
         return Todo.create({
           job: req.body.job,
-          status: 0
+          status: 0,
+          del: 0
         });
       })
       .then( result => {
@@ -27,19 +28,30 @@ router.post('/', (req, res, next) => {
       })
       .catch( err => {
 
-        debug('[PUT] 新增一筆todo, fail', err.dataValues );
+        debug('[PUT] 新增一筆todo, fail', err );
         next(err);
       });
 });
 
-/* [GET] 取得所以有todo
+/* [GET] 取得所有todo
  *
  */
 router.get('/', (req, res, next) => {
 
+  Todo.findAll({ where: {
+          del: 0
+        }
+      })
+      .then( result => {
 
-  res.end();
+        debug('[PUT] 取得所有todo, success', result );
+        res.json( { data: result } );
+      })
+      .catch( err => {
 
+        debug('[PUT] 取得所有todo, fail', err );
+        next(err);
+      });
 });
 
 /* [GET] 取得完成/未完成的todo
@@ -47,10 +59,29 @@ router.get('/', (req, res, next) => {
  */
 router.get('/:status', (req, res, next) => {
 
-  res.end();
+  let status = parseInt( req.params.status );
+
+  if(status === 0) status = false;
+  else status = true;
+
+  Todo.findAll({ where: {
+          del: 0,
+          status: true
+        }
+      })
+      .then( result => {
+
+        debug('[PUT] 取得完成/未完成 todo, success', result );
+        res.json( { data: result } );
+      })
+      .catch( err => {
+
+        debug('[PUT] 取得完成/未完成 todo, fail', err );
+        next(err);
+      });
 });
 
-/* [PUT] 新增一筆todo
+/* [PUT] 修改一筆todo資料
  * input: todoId + info
  */
 router.put('/', (req, res, next) => {
@@ -58,7 +89,7 @@ router.put('/', (req, res, next) => {
   res.end();
 });
 
-/* [DELETE] 刪除一筆todo
+/* [DELETE] 刪除(註銷)一筆todo
  * input: todoId
  */
 router.put('/', (req, res, next) => {

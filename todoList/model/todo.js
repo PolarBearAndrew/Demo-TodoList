@@ -18,6 +18,9 @@ var Todo = sequelize.define('todo', {
   },
   status: {
     type: Sequelize.BOOLEAN
+  },
+  del: {
+    type: Sequelize.BOOLEAN
   }
 }, {
   freezeTableName: true

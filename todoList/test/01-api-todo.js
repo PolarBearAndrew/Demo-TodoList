@@ -37,31 +37,83 @@ describe('[ (01) API unit test - users ]', () => {
             });
         });
 
-        // it('[GET] 查詢 todo (1) all', done => {
+        it('[GET] 查詢 todo (1) all', done => {
 
-        //     request({
-        //         url: 'http://localhost:8080/api/todo/',
-        //         method: 'GET',
-        //         json: true,
-        //         // form: { uid: uid }
-        //     }, (err, res, data) => {
+            request({
+                url: 'http://localhost:8080/api/todo/',
+                method: 'GET',
+                json: true,
+                // form: { uid: uid }
+            }, (err, res, result) => {
 
-        //         return done();
-        //     });
-        // });
+                let data = result.data;
 
-        // it('[GET] 查詢 todo (2) with status', done => {
+                should.exist(data);
+                should.not.exist(err);
+                res.statusCode.should.equal(200);
 
-        //     request({
-        //         url: 'http://localhost:8080/api/todo/done',
-        //         method: 'GET',
-        //         json: true,
-        //         // form: { uid: uid }
-        //     }, (err, res, data) => {
+                data.forEach( val => {
+                    val.should.have.property('id');
+                    val.should.have.property('job');
+                    val.should.have.property('status');
+                    val.should.have.property('del', false);
+                });
 
-        //         return done();
-        //     });
-        // });
+                return done();
+            });
+        });
+
+        it('[GET] 查詢未完成 todo (2) 未完成 status = 0', done => {
+
+            request({
+                url: 'http://localhost:8080/api/todo/0',
+                method: 'GET',
+                json: true,
+                // form: { uid: uid }
+            }, (err, res, result) => {
+
+                let data = result.data || [];
+
+                should.exist(data);
+                should.not.exist(err);
+                res.statusCode.should.equal(200);
+
+                data.forEach( val => {
+                    val.should.have.property('id');
+                    val.should.have.property('job');
+                    val.should.have.property('status', false);
+                    val.should.have.property('del', false);
+                });
+
+                return done();
+            });
+        });
+
+        it('[GET] 查詢未完成 todo (2) 已完成 status = 1', done => {
+
+            request({
+                url: 'http://localhost:8080/api/todo/1',
+                method: 'GET',
+                json: true,
+                // form: { uid: uid }
+            }, (err, res, result) => {
+
+                let data = result.data || [];
+
+                should.exist(data);
+                should.not.exist(err);
+                res.statusCode.should.equal(200);
+
+                data.forEach( val => {
+                    val.should.have.property('id');
+                    val.should.have.property('job');
+                    val.should.have.property('status', true);
+                    val.should.have.property('del', false);
+                });
+
+                return done();
+            });
+        });
 
         // it('[PUT] 修改 todo ', done => {
 
