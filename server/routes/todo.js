@@ -86,11 +86,10 @@ router.get('/:status', (req, res, next) => {
  */
 router.put('/', (req, res, next) => {
 
-  Todo.update({ where: {
-          id: req.body.id
-        }
-      },{
-        job: req.body.job
+  Todo.update(
+      { job: req.body.job },
+      { where:
+        { id: req.body.id }
       })
       .then( result => {
 
@@ -109,7 +108,21 @@ router.put('/', (req, res, next) => {
  */
 router.put('/', (req, res, next) => {
 
-  res.end();
+  Todo.update(
+      { del: false },
+      { where:
+        { id: req.body.id }
+      })
+      .then( result => {
+
+        debug('[PUT] 修改一筆todo資料 todo, success', result );
+        res.json( { data: result } );
+      })
+      .catch( err => {
+
+        debug('[PUT] 修改一筆todo資料 todo, fail', err );
+        next(err);
+      });
 });
 
 

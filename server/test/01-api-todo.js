@@ -119,7 +119,7 @@ describe('[ (01) API unit test - users ]', () => {
 
         it('[PUT] 修改 todo ', done => {
 
-            let newJob = { id: initData.id, job: '測試工作(修改)' };
+            let newJob = { id: initData.id, job: '測試工作(修改2)' };
 
             request({
                 url: 'http://localhost:8080/api/todo/',
@@ -128,20 +128,13 @@ describe('[ (01) API unit test - users ]', () => {
                 form: newJob
             }, (err, res, result) => {
 
-                console.log('data', data)
-
                 let data = result.data;
 
                 should.exist(data);
                 should.not.exist(err);
                 res.statusCode.should.equal(200);
 
-                data.forEach( val => {
-                    val.should.have.property('id', newJob.id);
-                    val.should.have.property('job', newJob.job);
-                    val.should.have.property('status');
-                    val.should.have.property('del', false);
-                });
+                data[0].should.equals(1);
 
                 return done();
             });
