@@ -119,7 +119,7 @@ describe('[ (01) API unit test - users ]', () => {
 
         it('[PUT] 修改 todo ', done => {
 
-            let newJob = { id: initData.id, job: '測試工作(修改2)' };
+            let newJob = { id: initData.id, job: '測試工作(修改)' };
 
             request({
                 url: 'http://localhost:8080/api/todo/',
@@ -140,18 +140,26 @@ describe('[ (01) API unit test - users ]', () => {
             });
         });
 
-        // it('[DELETE] 刪除 todo ', done => {
+        it('[PUT] 註銷 todo ', done => {
 
-        //     request({
-        //         url: 'http://localhost:8080/api/todo/',
-        //         method: 'DELETE',
-        //         json: true,
-        //         // form: { uid: uid }
-        //     }, (err, res, data) => {
+            request({
+                url: 'http://localhost:8080/api/todo/',
+                method: 'DELETE',
+                json: true,
+                form: { id: initData.id }
+            }, (err, res, result) => {
 
-        //         return done();
-        //     });
-        // });
+                let data = result.data;
+
+                should.exist(data);
+                should.not.exist(err);
+                res.statusCode.should.equal(200);
+
+                data[0].should.equals(1);
+
+                return done();
+            });
+        });
     });
 
     after( done => {

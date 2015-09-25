@@ -106,10 +106,10 @@ router.put('/', (req, res, next) => {
 /* [DELETE] 刪除(註銷)一筆todo
  * input: todoId
  */
-router.put('/', (req, res, next) => {
+router.delete('/', (req, res, next) => {
 
   Todo.update(
-      { del: false },
+      { del: true },
       { where:
         { id: req.body.id }
       })
