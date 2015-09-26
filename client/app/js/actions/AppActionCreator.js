@@ -96,6 +96,32 @@ var AppActionCreators = {
         })
     },
 
+    remove: function( val ){
+
+        var target = { id: val.id };
+
+        $.ajax('http://' + url,
+        {
+            type:"DELETE",
+            data: target,
+
+            success: function(data, status, jqxhr){
+
+                AppDispatcher.handleViewAction({
+
+                    actionType: AppConstants.TODO_REMOVE,
+                    items: target
+                });
+
+            },
+
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
+            }
+
+        })
+    },
+
     noop: function(){}
 };
 

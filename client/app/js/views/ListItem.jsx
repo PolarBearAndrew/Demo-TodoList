@@ -19,6 +19,8 @@ var ListItem = React.createClass({
               { this.checkBox(todo.status) }
               &nbsp;&nbsp;&nbsp;
               { todo.job }
+
+              <span className="glyphicon glyphicon-remove pull-right" aria-hidden="true"  onClick={ this.props.remove } />
             </a>
         );
     },

@@ -37,14 +37,15 @@ var ListContainer = React.createClass({
             return <ListItem
                         key={val.id}
                         todo={val}
-                        checkFunc={actions.check.bind( this, val )} />
+                        checkFunc={actions.check.bind( this, val )}
+                        remove={actions.remove.bind( this, val )} />
         },  this );
 
         return (
             <div className="container col-md-6 todolist">
                 <div className="list-group" >
                     <a className="list-group-item active">
-                        <input className="form-control" onKeyDown={ this._input } />
+                        <input className="form-control" onKeyDown={ this._input } placeholder="Anything Todo ?" />
                     </a>
 
                     { arr }
@@ -85,6 +86,7 @@ var ListContainer = React.createClass({
         // 13 is key Enter
         if( e.keyCode === 13 ){
             actions.add(event.target.value);
+            event.target.value = '';
         }
     }
 });

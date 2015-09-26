@@ -21,7 +21,7 @@ var Store = {};
 var arrTodos = [];
 
 // ctlr
-var filter = 'none';
+var filter = false;
 
 
 /**
@@ -56,9 +56,6 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
     switch (action.actionType) {
 
-        /**
-         *
-         */
         case AppConstants.TODO_LOAD:
 
             arrTodos = action.items.data;
@@ -81,14 +78,13 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
+            break;
+
         case AppConstants.TODO_STATUS:
 
             arrTodos = arrTodos.map( function( val ){
 
                 if( val.id === action.items.id ){
-
-                    console.log('success');
-
                     var tmp = val;
                     tmp.status = !tmp.status;
                     return tmp;
@@ -98,6 +94,18 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             });
 
             Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+        case AppConstants.TODO_REMOVE:
+
+            arrTodos = arrTodos.filter( function( val ){
+                return val.id !== action.items.id
+            });
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
 
         default:
     }

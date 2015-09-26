@@ -10,6 +10,7 @@ module.exports = keyMirror({
     TODO_FILTER: null,
     TODO_ADD: null,
     TODO_STATUS: null,
+    TODO_REMOVE: null,
   	noop: null
 });
 
