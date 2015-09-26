@@ -20,7 +20,7 @@ var ListContainer = React.createClass({
         return (
             <div className="container col-md-6">
                 <div className="list-group" >
-                    <a className="list-group-item"> Todolist demo for Fandora </a>
+                    <a className="list-group-item active"> Todolist Demo for Fandora </a>
                     { arr }
                 </div>
             </div>

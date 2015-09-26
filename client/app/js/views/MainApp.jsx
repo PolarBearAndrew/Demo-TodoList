@@ -6,7 +6,7 @@ var actions      = require('../actions/AppActionCreator');
 var TodoStore    = require('../stores/TodoStore');
 var AppConstants = require('../constants/AppConstants');
 
-var Footer          = React.createFactory( require('./Footer.jsx') );
+var Info          = React.createFactory( require('./Info.jsx') );
 var ListContainer   = React.createFactory( require('./ListContainer.jsx') );
 
 
@@ -31,8 +31,7 @@ var MainApp = React.createClass({
         return (
             <div className="">
                 <ListContainer arrTodos={this.state.arrTodos} />
-                <a className="btn btn-success"> Button </a>
-                <Footer />
+                <Info />
             </div>
         )
     },

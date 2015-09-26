@@ -4,7 +4,7 @@
 var ReactPropTypes = React.PropTypes;
 var actions = require('../actions/AppActionCreator');
 
-var Footer = React.createClass({
+var Info = React.createClass({
 
   propTypes: {
   },
@@ -12,13 +12,11 @@ var Footer = React.createClass({
     render: function() {
 
         return (
-            <footer className="footer">
-
+            <div className="">
                 <p> Demo for Fandora </p>
-
-            </footer>
+            </div>
         );
     },
 });
 
-module.exports = Footer;
+module.exports = Info;
