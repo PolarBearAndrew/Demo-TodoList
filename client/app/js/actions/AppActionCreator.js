@@ -5,8 +5,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
-var IPaddress = 'localhost:8080';
-//var IPaddress = '120.96.75.142:8080';  //at home
+var url = 'localhost:8080/api/todo';
+//var url = '120.96.75.142:8080';  //at home
 
 var AppActionCreators = {
 
@@ -15,25 +15,25 @@ var AppActionCreators = {
      */
     load: function(){
 
-        // $.ajax('http://' + IPaddress + '/api/log/',
-        // {
-        //     type:"GET",
+        $.ajax('http://' + url,
+        {
+            type:"GET",
 
-        //     success: function(data, status, jqxhr){
+            success: function(data, status, jqxhr){
 
-        //         AppDispatcher.handleViewAction({
+                AppDispatcher.handleViewAction({
 
-        //             actionType: AppConstants.TODO_LOAD,
-        //             items: data
-        //         });
+                    actionType: AppConstants.TODO_LOAD,
+                    items: data
+                });
 
-        //     },
+            },
 
-        //     error: function( err, status, errText ){
-        //         console.error( 'ERROR', err.responseText );
-        //     }
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
+            }
 
-        // })
+        })
 
     },
 
