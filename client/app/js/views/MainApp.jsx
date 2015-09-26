@@ -33,6 +33,7 @@ var MainApp = React.createClass({
                 <ListContainer
                     filter={this.state.filter}
                     arrTodos={this.state.arrTodos}
+                    onModify={this.state.onModify}
                     />
                 <Info />
             </div>
@@ -51,7 +52,8 @@ var MainApp = React.createClass({
 
         return {
             arrTodos: TodoStore.getTodos(),
-            filter: TodoStore.getFilter()
+            filter: TodoStore.getFilter(),
+            onModify: TodoStore.getOnModify()
          };
     }
 });

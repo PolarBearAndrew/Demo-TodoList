@@ -22,6 +22,7 @@ var arrTodos = [];
 
 // ctlr
 var filter = false;
+var onModify = -1;
 
 
 /**
@@ -39,6 +40,10 @@ objectAssign( Store, EventEmitter.prototype, {
 
     getFilter: function(){
         return filter;
+    },
+
+    getOnModify: function(){
+        return onModify;
     },
     //
     noop: function(){}
@@ -89,6 +94,33 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
                     tmp.status = !tmp.status;
                     return tmp;
                 }
+
+                return val;
+            });
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+        case AppConstants.TODO_MODIFY:
+
+            onModify = action.items.id;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+        case AppConstants.TODO_UPDATE:
+
+            arrTodos = arrTodos.map( function( val ){
+
+                if( val.id === action.items.id ){
+                    var tmp = val;
+                    tmp.job = action.items.job;
+                    return tmp;
+                }
+
+                onModify = -1;
 
                 return val;
             });

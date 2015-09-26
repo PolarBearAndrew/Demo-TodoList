@@ -96,6 +96,42 @@ var AppActionCreators = {
         })
     },
 
+    modify: function( val ){
+
+        AppDispatcher.handleViewAction({
+
+            actionType: AppConstants.TODO_MODIFY,
+            items: val
+        });
+    },
+
+    update: function( val, newJob ){
+
+        var target = { id: val.id, job: newJob };
+
+        $.ajax('http://' + url,
+        {
+            type:"PUT",
+            data: target,
+
+            success: function(data, status, jqxhr){
+
+                AppDispatcher.handleViewAction({
+
+                    actionType: AppConstants.TODO_UPDATE,
+                    items: target
+                });
+
+            },
+
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
+            }
+
+        })
+    },
+
+
     remove: function( val ){
 
         var target = { id: val.id };

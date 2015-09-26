@@ -36,8 +36,11 @@ var ListContainer = React.createClass({
         var arr = data.map( function( val ){
             return <ListItem
                         key={val.id}
+                        onModify={val.id === this.props.onModify}
                         todo={val}
                         checkFunc={actions.check.bind( this, val )}
+                        modify={actions.modify.bind( this, val )}
+                        update={actions.update.bind( this, val )}
                         remove={actions.remove.bind( this, val )} />
         },  this );
 
