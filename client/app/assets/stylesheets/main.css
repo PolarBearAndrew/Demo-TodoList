@@ -1,44 +1,51 @@
-/*
-Error: Inconsistent indentation: 2 spaces were used for indentation, but the rest of the document was indented using 1 tab.
-        on line 6 of /Users/andrew/Project/Demo-TodoList/client/app/assets/sass/main.sass
+/* line 1, ../sass/main.sass */
+body {
+  padding: 120px;
+  background-color: #878787;
+}
 
-1: body
-2: 	padding: 120px
-3: 	background-color: #878787
-4: 
-5: .info
-6:   color: white
-7:   text-shadow: 1px 1px 1px #333
-8: 
-9: .todolist
-10:   margin-top: 60px
-11: 
+/* line 5, ../sass/main.sass */
+.info {
+  margin-left: 10%;
+  float: left;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px #333;
+}
 
-Backtrace:
-/Users/andrew/Project/Demo-TodoList/client/app/assets/sass/main.sass:6
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:473:in `block in tabulate'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:431:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:431:in `each_with_index'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:431:in `tabulate'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:396:in `_to_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:268:in `render'
-/Library/Ruby/Gems/2.0.0/gems/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:17:in `block in render'
-/Library/Ruby/Gems/2.0.0/gems/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:29:in `with_import_scope'
-/Library/Ruby/Gems/2.0.0/gems/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:16:in `render'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:328:in `block in watch'
-/Library/Ruby/Gems/2.0.0/gems/listen-2.9.0/lib/listen/listener.rb:291:in `call'
-/Library/Ruby/Gems/2.0.0/gems/listen-2.9.0/lib/listen/listener.rb:291:in `_process_changes'
-/Library/Ruby/Gems/2.0.0/gems/listen-2.9.0/lib/listen/listener.rb:255:in `block in _wait_for_changes'
-/Library/Ruby/Gems/2.0.0/gems/listen-2.9.0/lib/listen/listener.rb:238:in `loop'
-/Library/Ruby/Gems/2.0.0/gems/listen-2.9.0/lib/listen/listener.rb:238:in `_wait_for_changes'
-/Library/Ruby/Gems/2.0.0/gems/listen-2.9.0/lib/listen/listener.rb:327:in `block in _start_wait_thread'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Inconsistent indentation: 2 spaces were used for indentation, but the rest of the document was indented using 1 tab.\A         on line 6 of /Users/andrew/Project/Demo-TodoList/client/app/assets/sass/main.sass\A \A 1: body\A 2: 	padding: 120px\A 3: 	background-color: #878787\A 4: \A 5: .info\A 6:   color: white\A 7:   text-shadow: 1px 1px 1px #333\A 8: \A 9: .todolist\A 10:   margin-top: 60px\A 11: "; }
+/* line 11, ../sass/main.sass */
+.todolist {
+  margin-top: 60px;
+}
+
+/* line 14, ../sass/main.sass */
+.filter {
+  float: right;
+  margin-right: 12px;
+}
+
+/* line 18, ../sass/main.sass */
+span:hover {
+  cursor: pointer;
+}
+
+/* line 22, ../sass/main.sass */
+span.glyphicon-remove:hover {
+  cursor: pointer;
+  color: #B50000;
+}
+
+/* line 26, ../sass/main.sass */
+span.glyphicon-unchecked:hover {
+  cursor: pointer;
+  color: green;
+}
+
+/* line 30, ../sass/main.sass */
+img.icon {
+  margin-bottom: -20px;
+  margin-top: -22px;
+  margin-left: -10px;
+  margin-right: -10px;
+  width: 32px;
+  height: 32px;
+}
