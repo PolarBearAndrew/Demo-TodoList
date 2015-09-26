@@ -37,6 +37,16 @@ var AppActionCreators = {
 
     },
 
+    filter: function( ctrl ){
+
+        AppDispatcher.handleViewAction({
+
+            actionType: AppConstants.TODO_FILTER,
+            items: ctrl
+        });
+    },
+
+
     noop: function(){}
 };
 

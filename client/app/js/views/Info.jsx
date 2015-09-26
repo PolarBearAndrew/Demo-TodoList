@@ -12,8 +12,8 @@ var Info = React.createClass({
     render: function() {
 
         return (
-            <div className="">
-                <p> Demo for Fandora </p>
+            <div className="info">
+                <h1 className="header"> Todolist Demo for Fandora </h1>
             </div>
         );
     },

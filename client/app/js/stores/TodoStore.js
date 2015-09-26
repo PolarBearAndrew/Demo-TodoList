@@ -20,6 +20,9 @@ var Store = {};
 // all toods
 var arrTodos = [];
 
+// ctlr
+var filter = 'none';
+
 
 /**
  * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
@@ -31,7 +34,11 @@ objectAssign( Store, EventEmitter.prototype, {
      * 供外界取得 store 內部資料
      */
     getTodos: function(){
-        return Store.todo;
+        return arrTodos;
+    },
+
+    getFilter: function(){
+        return filter;
     },
     //
     noop: function(){}
@@ -54,7 +61,15 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.TODO_LOAD:
 
-            Store.todo = action.items;
+            arrTodos = action.items;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+        case AppConstants.TODO_FILTER:
+
+            filter = action.items;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 

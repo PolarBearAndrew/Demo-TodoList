@@ -29,8 +29,11 @@ var MainApp = React.createClass({
     render: function() {
 
         return (
-            <div className="">
-                <ListContainer arrTodos={this.state.arrTodos} />
+            <div className="wrapper">
+                <ListContainer
+                    filter={this.state.filter}
+                    arrTodos={this.state.arrTodos}
+                    />
                 <Info />
             </div>
         )
@@ -47,7 +50,8 @@ var MainApp = React.createClass({
     getTruth: function() {
 
         return {
-            arrTodos: TodoStore.getTodos()
+            arrTodos: TodoStore.getTodos(),
+            filter: TodoStore.getFilter()
          };
     }
 });
