@@ -2,3 +2,6 @@ body{padding:120px;background-color:#878787}
 .info{color:#fff;text-shadow:1px 1px 1px #333}
 .todolist{margin-top:60px}
 .filter{float:right;margin-right:12px}
+span:hover{cursor:pointer}
+span.glyphicon-remove:hover{cursor:pointer;color:#B50000}
+span.glyphicon-unchecked:hover{cursor:pointer;color:green}
