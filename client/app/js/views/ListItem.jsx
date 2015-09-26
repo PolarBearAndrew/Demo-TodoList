@@ -11,7 +11,7 @@ var ListItem = React.createClass({
     },
 
     getInitialState: function() {
-      return { todo: this.props.todo };
+      return { todo: this.props.todo, origin: this.props.todo };
     },
 
     render: function() {
@@ -63,8 +63,10 @@ var ListItem = React.createClass({
     _modify: function( e ){
 
         // 13 is key Enter
-        if( e.keyCode === 13 ){
+        if( e.keyCode === 13  ){
             this.props.update( event.target.value );
+        }else if( e.keyCode === 27 ){
+
         }
     }
 });
