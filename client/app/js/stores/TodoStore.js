@@ -81,6 +81,24 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
+        case AppConstants.TODO_STATUS:
+
+            arrTodos = arrTodos.map( function( val ){
+
+                if( val.id === action.items.id ){
+
+                    console.log('success');
+
+                    var tmp = val;
+                    tmp.status = !tmp.status;
+                    return tmp;
+                }
+
+                return val;
+            });
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
         default:
     }
 })

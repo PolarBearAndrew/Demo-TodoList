@@ -70,6 +70,32 @@ var AppActionCreators = {
         })
     },
 
+    check: function( val ){
+
+        var target = { id: val.id, status: !val.status };
+
+        $.ajax('http://' + url + '/completed',
+        {
+            type:"PUT",
+            data: target,
+
+            success: function(data, status, jqxhr){
+
+                AppDispatcher.handleViewAction({
+
+                    actionType: AppConstants.TODO_STATUS,
+                    items: target
+                });
+
+            },
+
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
+            }
+
+        })
+    },
+
     noop: function(){}
 };
 

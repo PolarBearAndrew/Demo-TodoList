@@ -57,29 +57,29 @@ router.get('/', (req, res, next) => {
 /* [GET] 取得完成/未完成的todo
  *
  */
-router.get('/:status', (req, res, next) => {
+// router.get('/:status', (req, res, next) => {
 
-  let status = parseInt( req.params.status );
+//   let status = parseInt( req.params.status );
 
-  if(status === 0) status = false;
-  else status = true;
+//   if(status === 0) status = false;
+//   else status = true;
 
-  Todo.findAll({ where: {
-          del: false,
-          status: true
-        }
-      })
-      .then( result => {
+//   Todo.findAll({ where: {
+//           del: false,
+//           status: true
+//         }
+//       })
+//       .then( result => {
 
-        debug('[PUT] 取得完成/未完成 todo, success', result );
-        res.json( { data: result } );
-      })
-      .catch( err => {
+//         debug('[PUT] 取得完成/未完成 todo, success', result );
+//         res.json( { data: result } );
+//       })
+//       .catch( err => {
 
-        debug('[PUT] 取得完成/未完成 todo, fail', err );
-        next(err);
-      });
-});
+//         debug('[PUT] 取得完成/未完成 todo, fail', err );
+//         next(err);
+//       });
+// });
 
 /* [PUT] 修改一筆todo資料
  * input: todoId + info
@@ -99,6 +99,28 @@ router.put('/', (req, res, next) => {
       .catch( err => {
 
         debug('[PUT] 修改一筆todo資料 todo, fail', err );
+        next(err);
+      });
+});
+
+/* [PUT] 完成/重新啟動一筆todo資料
+ * input: todoId + info
+ */
+router.put('/completed', (req, res, next) => {
+
+  Todo.update(
+      { status: req.body.status },
+      { where:
+        { id: req.body.id }
+      })
+      .then( result => {
+
+        debug('[PUT] 完成/重新啟動一筆todo資料 todo, success', result );
+        res.json( { data: result } );
+      })
+      .catch( err => {
+
+        debug('[PUT] 完成/重新啟動一筆todo資料 todo, fail', err );
         next(err);
       });
 });

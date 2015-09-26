@@ -34,7 +34,10 @@ var ListContainer = React.createClass({
 
         // ListItem
         var arr = data.map( function( val ){
-            return <ListItem key={val.id} todo={val} />
+            return <ListItem
+                        key={val.id}
+                        todo={val}
+                        checkFunc={actions.check.bind( this, val )} />
         },  this );
 
         return (

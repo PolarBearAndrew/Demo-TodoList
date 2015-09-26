@@ -28,9 +28,9 @@ var ListItem = React.createClass({
       //console.log('check', check)
 
       if( check )
-        return <span className="glyphicon glyphicon-check" aria-hidden="true" />
+        return <span className="glyphicon glyphicon-check" aria-hidden="true" onClick={ this.props.checkFunc } />
       else
-        return <span className="glyphicon glyphicon-unchecked" aria-hidden="true" />
+        return <span className="glyphicon glyphicon-unchecked" aria-hidden="true" onClick={ this.props.checkFunc } />
     }
 });
 
