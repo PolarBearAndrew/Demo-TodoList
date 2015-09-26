@@ -61,7 +61,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.TODO_LOAD:
 
-            arrTodos = action.items;
+            arrTodos = action.items.data;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -74,6 +74,12 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
+
+        case AppConstants.TODO_ADD:
+
+            arrTodos.unshift(action.items.data);
+
+            Store.emit( AppConstants.CHANGE_EVENT );
 
         default:
     }

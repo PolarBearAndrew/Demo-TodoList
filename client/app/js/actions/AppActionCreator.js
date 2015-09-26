@@ -46,6 +46,29 @@ var AppActionCreators = {
         });
     },
 
+    add: function( val ){
+
+        $.ajax('http://' + url,
+        {
+            type:"POST",
+            data: { job: val },
+
+            success: function(data, status, jqxhr){
+
+                AppDispatcher.handleViewAction({
+
+                    actionType: AppConstants.TODO_ADD,
+                    items: data
+                });
+
+            },
+
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
+            }
+
+        })
+    },
 
     noop: function(){}
 };

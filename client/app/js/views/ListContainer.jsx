@@ -11,8 +11,8 @@ var ListContainer = React.createClass({
     render: function() {
 
         // data
-        var arrTodos = this.props.arrTodos || {};
-        var data     = arrTodos.data || [];
+        var data = this.props.arrTodos || [];
+        // var data     = arrTodos.data || [];
 
         // ctrls
         var btnActive = ['none', false, true];
@@ -41,7 +41,7 @@ var ListContainer = React.createClass({
             <div className="container col-md-6 todolist">
                 <div className="list-group" >
                     <a className="list-group-item active">
-                        <input className="form-control" />
+                        <input className="form-control" onKeyDown={ this._input } />
                     </a>
 
                     { arr }
@@ -75,6 +75,14 @@ var ListContainer = React.createClass({
 
     _filter: function( ctrl ){
         actions.filter(ctrl);
+    },
+
+    _input: function( e ){
+
+        // 13 is key Enter
+        if( e.keyCode === 13 ){
+            actions.add(event.target.value);
+        }
     }
 });
 
