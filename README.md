@@ -1,2 +1,6 @@
 # Demo-TodoList
-Node.js + MySQL + AWS + Github
+React.js/Flux + Node.js + MySQL
+
+![screen shot](./img_todolist.png)
+
+Simple TodoList Demo

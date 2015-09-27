@@ -28,7 +28,7 @@ var Info = React.createClass({
                 </h4>
 
                 <h4 className="header"> Use :
-                    <h5 className="header"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React.js/Flux + Node.js + MySQL + AWS</h5>
+                    <h5 className="header"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React.js/Flux + Node.js + MySQL</h5>
                 </h4>
             </div>
         );
