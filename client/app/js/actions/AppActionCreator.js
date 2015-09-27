@@ -1,16 +1,13 @@
-/**
- *
- */
+
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var AppConstants = require('../constants/AppConstants');
-var Promise = require('es6-promise').Promise;
+var AppConstants  = require('../constants/AppConstants');
+var Promise       = require('es6-promise').Promise;
 
 var url = 'localhost:8080/api/todo';
-//var url = '120.96.75.142:8080';  //at home
 
 var AppActionCreators = {
 
-    /**
+    /*
      * app init, init load
      */
     load: function(){

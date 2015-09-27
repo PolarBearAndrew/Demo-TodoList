@@ -1,10 +1,7 @@
-/**
- *
- */
+
 var ReactPropTypes = React.PropTypes;
 var actions        = require('../actions/AppActionCreator');
-
-var ListItem = React.createFactory( require('./ListItem.jsx') );
+var ListItem       = React.createFactory( require('./ListItem.jsx') );
 
 var ListContainer = React.createClass({
 
@@ -12,7 +9,6 @@ var ListContainer = React.createClass({
 
         // data
         var data = this.props.arrTodos || [];
-        // var data     = arrTodos.data || [];
 
         // ctrls
         var btnActive = ['none', false, true];
@@ -36,13 +32,13 @@ var ListContainer = React.createClass({
         var arr = data.map( function( val ){
             return <ListItem
                         key={val.id}
-                        onModify={val.id === this.props.onModify}
                         todo={val}
-                        checkFunc={actions.check.bind( this, val )}
+                        onModify={val.id === this.props.onModify}
                         modify={actions.modify.bind( this, val )}
                         update={actions.update.bind( this, val )}
-                        remove={actions.remove.bind( this, val )} />
-        },  this );
+                        remove={actions.remove.bind( this, val )}
+                        checkFunc={actions.check.bind( this, val )} />
+        }, this );
 
         return (
             <div className="container col-md-6 todolist">

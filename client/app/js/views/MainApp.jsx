@@ -1,13 +1,10 @@
-/**
- *
- */
 
 var actions      = require('../actions/AppActionCreator');
 var TodoStore    = require('../stores/TodoStore');
 var AppConstants = require('../constants/AppConstants');
 
 var Info          = React.createFactory( require('./Info.jsx') );
-var ListContainer   = React.createFactory( require('./ListContainer.jsx') );
+var ListContainer = React.createFactory( require('./ListContainer.jsx') );
 
 
 var MainApp = React.createClass({
@@ -54,9 +51,8 @@ var MainApp = React.createClass({
             arrTodos: TodoStore.getTodos(),
             filter: TodoStore.getFilter(),
             onModify: TodoStore.getOnModify()
-         };
+        };
     }
 });
-
 
 module.exports = MainApp;

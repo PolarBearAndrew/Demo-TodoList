@@ -1,10 +1,10 @@
-var MainApp = React.createFactory(require('./views/MainApp.jsx'));
 
+var MainApp      = React.createFactory(require('./views/MainApp.jsx'));
 var AppConstants = require('./constants/AppConstants');
-var actions = require('./actions/AppActionCreator');
+var actions      = require('./actions/AppActionCreator');
 
 $(function(){
 
-	actions.load();
-	React.render( MainApp(), document.getElementById('container') );
+  	actions.load();
+  	React.render( MainApp(), document.getElementById('container') );
 })

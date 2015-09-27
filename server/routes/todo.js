@@ -38,10 +38,9 @@ router.post('/', (req, res, next) => {
  */
 router.get('/', (req, res, next) => {
 
-  Todo.findAll({ where: {
-          del: false
-        }
-      })
+  Todo.findAll(
+        { where: { del: false } }
+      )
       .then( result => {
 
         debug('[PUT] 取得所有todo, success', result );
@@ -54,32 +53,6 @@ router.get('/', (req, res, next) => {
       });
 });
 
-/* [GET] 取得完成/未完成的todo
- *
- */
-// router.get('/:status', (req, res, next) => {
-
-//   let status = parseInt( req.params.status );
-
-//   if(status === 0) status = false;
-//   else status = true;
-
-//   Todo.findAll({ where: {
-//           del: false,
-//           status: true
-//         }
-//       })
-//       .then( result => {
-
-//         debug('[PUT] 取得完成/未完成 todo, success', result );
-//         res.json( { data: result } );
-//       })
-//       .catch( err => {
-
-//         debug('[PUT] 取得完成/未完成 todo, fail', err );
-//         next(err);
-//       });
-// });
 
 /* [PUT] 修改一筆todo資料
  * input: todoId + info
@@ -87,10 +60,9 @@ router.get('/', (req, res, next) => {
 router.put('/', (req, res, next) => {
 
   Todo.update(
-      { job: req.body.job },
-      { where:
-        { id: req.body.id }
-      })
+        { job: req.body.job },
+        { where: { id: req.body.id } }
+      )
       .then( result => {
 
         debug('[PUT] 修改一筆todo資料 todo, success', result );
@@ -109,10 +81,9 @@ router.put('/', (req, res, next) => {
 router.put('/completed', (req, res, next) => {
 
   Todo.update(
-      { status: req.body.status },
-      { where:
-        { id: req.body.id }
-      })
+        { status: req.body.status },
+        { where: { id: req.body.id } }
+      )
       .then( result => {
 
         debug('[PUT] 完成/重新啟動一筆todo資料 todo, success', result );
@@ -131,10 +102,9 @@ router.put('/completed', (req, res, next) => {
 router.delete('/', (req, res, next) => {
 
   Todo.update(
-      { del: true },
-      { where:
-        { id: req.body.id }
-      })
+        { del: true },
+        { where: { id: req.body.id } }
+      )
       .then( result => {
 
         debug('[PUT] 修改一筆todo資料 todo, success', result );
